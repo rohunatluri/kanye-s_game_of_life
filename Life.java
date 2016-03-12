@@ -41,7 +41,7 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
      * Main program opens a window whose content pane is a JPanel belonging to class Life.
      */
     public static void main(String[] args) {
-        JFrame f = new JFrame("Life");
+        JFrame f = new JFrame("Kanye's Game of Life");
         JPanel p = new Life();
         f.setContentPane(p);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
