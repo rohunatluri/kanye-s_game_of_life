@@ -53,7 +53,7 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
 
     private final int GRID_SIZE = 8;  // Number of squares along each side of the board
                                         // (Should probably not be less than 10 or more than 200,)
-    private final int TEMPO = 240;
+    private final int TEMPO = 480;
 
     private boolean[][] alive;   // Represents the board.  alive[r][c] is true if the cell in row r, column c is alive.
 
@@ -142,6 +142,7 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
             }
         }
     }
+
 
         alive = new boolean[GRID_SIZE][GRID_SIZE];
         setLayout(new BorderLayout(3,3));
