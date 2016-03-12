@@ -4,7 +4,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 public class AudioPlayer {
-    
+
     public String fileName;
 
     public void play() {
