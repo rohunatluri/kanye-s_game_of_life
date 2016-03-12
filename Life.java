@@ -75,7 +75,6 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
     public Life() {
 	audioPlayer = new AudioPlayer[GRID_SIZE][GRID_SIZE];
 	audioPlayer[0][0] = new AudioPlayer("C:\\Users\\mzwan_000\\workspace\\Java2DGame\\res\\01_-_Shima_no_Kodomo_Naru.wav");
-	audioPlayer[0][0].play();
 
         alive = new boolean[GRID_SIZE][GRID_SIZE];
         setLayout(new BorderLayout(3,3));
@@ -161,15 +160,26 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
         display.setAutopaint(false);  // For efficiency, prevent redrawing of individual squares.
         for (int r = 0; r < GRID_SIZE; r++) {
             for (int c = 0; c < GRID_SIZE; c++) {
-                if (alive[r][c])
+                if (alive[r][c]) {
                     display.setColor(r,c,Color.WHITE);
-                else
+		}
+                else {
                     display.setColor(r,c,null);  // Shows the background color, black.
+		}
             }
         }
         display.setAutopaint(true);  // Redraw the whole board, and turn on drawing of individual squares.
     }
 
+    public void playSound() {
+	for (int r = 0; r < GRID_SIZE; r++) {
+	    for (int c = 0; c < GRID_SIZE; c++) {
+		if (alive[r][c]) {
+		    audioPlayer[r][c].play();
+		}
+	    }
+	}
+    }
 
     /**
      * Respond to an ActionEvent from one of the control buttons or from the timer.
@@ -186,6 +196,7 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
         else if (src == nextButton) {  // Compute and display the next generation.
             doFrame();
             showBoard();
+	    
         }
         else if (src == stopGoButton) {  // Start or stop the game, depending on whether or not it is currenty running.
             if (timer.isRunning()) {  // If the game is currently running, stop it.
