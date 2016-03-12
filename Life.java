@@ -48,7 +48,6 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
         f.pack();
         f.setLocation(100,50);
         f.setVisible(true);
-	audioPlayer.play();
     }
 
     private final int GRID_SIZE = 6;  // Number of squares along each side of the board
@@ -66,7 +65,7 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
     private JButton  clearButton;   // Button for clearing the board, that is setting all the cells to "dead".
     private JButton  quitButton;    // Button for ending the program.
     
-    private AudioPlayer[] audioPlayer; // AudioPlayer Object
+    private AudioPlayer[][] audioPlayer; // AudioPlayer Object
 
 
 
@@ -76,11 +75,8 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
     public Life() {
 	audioPlayer = new AudioPlayer[GRID_SIZE][GRID_SIZE];
 	audioPlayer[0][0] = new AudioPlayer("C:\\Users\\mzwan_000\\workspace\\Java2DGame\\res\\01_-_Shima_no_Kodomo_Naru.wav");
+	audioPlayer[0][0].play();
 
-
-
-
-	
         alive = new boolean[GRID_SIZE][GRID_SIZE];
         setLayout(new BorderLayout(3,3));
         setBackground(Color.GRAY);
