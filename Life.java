@@ -52,6 +52,7 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
 
     private final int GRID_SIZE = 6;  // Number of squares along each side of the board
                                         // (Should probably not be less than 10 or more than 200,)
+    private final int TEMPO = 240;
 
     private boolean[][] alive;   // Represents the board.  alive[r][c] is true if the cell in row r, column c is alive.
 
@@ -74,7 +75,8 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
      */
     public Life() {
 	audioPlayer = new AudioPlayer[GRID_SIZE][GRID_SIZE];
-	audioPlayer[0][0] = new AudioPlayer("C:\\Users\\mzwan_000\\workspace\\Java2DGame\\res\\01_-_Shima_no_Kodomo_Naru.wav");
+	audioPlayer[2][2] = new AudioPlayer("C:\\Users\\mzwan_000\\workspace\\Java2DGame\\res\\01_-_Shima_no_Kodomo_Naru.wav");
+	
 
         alive = new boolean[GRID_SIZE][GRID_SIZE];
         setLayout(new BorderLayout(3,3));
@@ -105,7 +107,7 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
         nextButton.addActionListener(this);
         display.addMouseListener(this);
         display.addMouseMotionListener(this);
-        timer = new Timer(50,this);
+        timer = new Timer(1000 * 60 / TEMPO,this);
     }
 
 
@@ -175,7 +177,12 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
 	for (int r = 0; r < GRID_SIZE; r++) {
 	    for (int c = 0; c < GRID_SIZE; c++) {
 		if (alive[r][c]) {
-		    audioPlayer[r][c].play();
+		    try {
+			audioPlayer[r][c].play();
+		    }
+		    catch (Exception e){
+			continue;
+		    }
 		}
 	    }
 	}
@@ -196,7 +203,7 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
         else if (src == nextButton) {  // Compute and display the next generation.
             doFrame();
             showBoard();
-	    
+	    playSound();
         }
         else if (src == stopGoButton) {  // Start or stop the game, depending on whether or not it is currenty running.
             if (timer.isRunning()) {  // If the game is currently running, stop it.
@@ -220,10 +227,12 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
                     alive[r][c] = (Math.random() < 0.25);  // 25% probability that the cell is alive.
             }
             showBoard();
+	    playSound();
         }
         else if (src == timer) {  // Each time the timer fires, a new frame is computed and displayed.
             doFrame();
             showBoard();
+	    playSound();
         }
     }
 
