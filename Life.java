@@ -50,9 +50,9 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
         f.setVisible(true);
     }
 
-    private final int GRID_SIZE = 4;  // Number of squares along each side of the board
+    private final int GRID_SIZE = 12;  // Number of squares along each side of the board
                                         // (Should probably not be less than 10 or more than 200,)
-    private final int TEMPO = 240;
+    private final int TEMPO = 480;
 
     private boolean[][] alive;   // Represents the board.  alive[r][c] is true if the cell in row r, column c is alive.
 
@@ -75,54 +75,58 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
      */
     public Life() {
 	audioPlayer = new AudioPlayer[GRID_SIZE][GRID_SIZE];
-	audioPlayer[0][0] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
+	for (int r = 0; r < GRID_SIZE / 4; r++) {
+	    for (int c = 0; c < GRID_SIZE / 4; c++) {
+	audioPlayer[0 + 4 * r][0 + 4 * c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
 						    + "piano-ff-0" + (4)
 						    + ".wav");
-	audioPlayer[0][1] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
+	audioPlayer[0 + 4 * r][1 + 4 * c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
 						    + "piano-ff-0" + (8)
 						    + ".wav");
-	audioPlayer[0][2] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
+	audioPlayer[0 + 4 * r][2 + 4 * c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
 						    + "piano-ff-0" + (11)
 						    + ".wav");
-	audioPlayer[0][3] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
+	audioPlayer[0 + 4 * r][3 + 4 * c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
 						    + "piano-ff-0" + (16)
 						    + ".wav");
-	audioPlayer[1][0] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
+	audioPlayer[1 + 4 * r][0 + 4 * c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
 						    + "piano-ff-0" + (20)
 						    + ".wav");
-	audioPlayer[1][1] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
+	audioPlayer[1 + 4 * r][1 + 4 * c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
 						    + "piano-ff-0" + (23)
 						    + ".wav");
-	audioPlayer[1][2] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
+	audioPlayer[1 + 4 * r][2 + 4 * c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
 						    + "piano-ff-0" + (28)
 						    + ".wav");
-	audioPlayer[1][3] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
+	audioPlayer[1 + 4 * r][3 + 4 * c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
 						    + "piano-ff-0" + (32)
 						    + ".wav");
-	audioPlayer[2][0] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
+	audioPlayer[2 + 4 * r][0 + 4 * c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
 						    + "piano-ff-0" + (35)
 						    + ".wav");
-	audioPlayer[2][1] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
+	audioPlayer[2 + 4 * r][1 + 4 * c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
 						    + "piano-ff-0" + (40)
 						    + ".wav");
-	audioPlayer[2][2] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
+	audioPlayer[2 + 4 * r][2 + 4 * c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
 						    + "piano-ff-0" + (44)
 						    + ".wav");
-	audioPlayer[2][3] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
+	audioPlayer[2 + 4 * r][3 + 4 * c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
 						    + "piano-ff-0" + (47)
 						    + ".wav");
-	audioPlayer[3][0] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
+	audioPlayer[3 + 4 * r][0 + 4 * c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
 						    + "piano-ff-0" + (52)
 						    + ".wav");
-	audioPlayer[3][1] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
+	audioPlayer[3 + 4 * r][1 + 4 * c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
 						    + "piano-ff-0" + (56)
 						    + ".wav");
-	audioPlayer[3][2] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
+	audioPlayer[3 + 4 * r][2 + 4 * c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
 						    + "piano-ff-0" + (59)
 						    + ".wav");
-	audioPlayer[3][3] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
+	audioPlayer[3 + 4 * r][3 + 4 * c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
 						    + "piano-ff-0" + (64)
-						    + ".wav");	
+						    + ".wav");
+	    }
+	}
 
         alive = new boolean[GRID_SIZE][GRID_SIZE];
         setLayout(new BorderLayout(3,3));
