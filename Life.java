@@ -52,7 +52,7 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
 
     private final int GRID_SIZE = 6;  // Number of squares along each side of the board
                                         // (Should probably not be less than 10 or more than 200,)
-    private final int TEMPO = 480;
+    private final int TEMPO = 240;
 
     private boolean[][] alive;   // Represents the board.  alive[r][c] is true if the cell in row r, column c is alive.
 
@@ -77,7 +77,10 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
 	audioPlayer = new AudioPlayer[GRID_SIZE][GRID_SIZE];
 	for (int r = 0; r < GRID_SIZE; r++ ) {
 	    for (int c = 0; c < GRID_SIZE; c++) {
-		audioPlayer[r][c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\" + (r * GRID_SIZE + c) + ".wav");
+		//audioPlayer[r][c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\" + (r * GRID_SIZE + c) + ".wav");
+		audioPlayer[r][c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
+						    + "piano-ff-0" + (28 + r * GRID_SIZE + c)
+						    + ".wav");
 	    }
 	}
 	
