@@ -1,3 +1,4 @@
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -48,10 +49,9 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
         f.pack();
         f.setLocation(100,50);
         f.setVisible(true);
-	audioPlayer.play();
     }
 
-    private final int GRID_SIZE = 6;  // Number of squares along each side of the board
+    private final int GRID_SIZE = 10;  // Number of squares along each side of the board
                                         // (Should probably not be less than 10 or more than 200,)
 
     private boolean[][] alive;   // Represents the board.  alive[r][c] is true if the cell in row r, column c is alive.
@@ -65,8 +65,6 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
     private JButton  randomButton;  // Button for filling the board randomly with each cell having a 25% chance of  being alive.
     private JButton  clearButton;   // Button for clearing the board, that is setting all the cells to "dead".
     private JButton  quitButton;    // Button for ending the program.
-    
-    private AudioPlayer[] audioPlayer; // AudioPlayer Object
 
 
 
@@ -74,13 +72,6 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
      * Create a life game board, initially empty.  The number of cells on each side of the grid is GRID_SIZE.
      */
     public Life() {
-	audioPlayer = new AudioPlayer[GRID_SIZE][GRID_SIZE];
-	audioPlayer[0][0] = new AudioPlayer("C:\\Users\\mzwan_000\\workspace\\Java2DGame\\res\\01_-_Shima_no_Kodomo_Naru.wav");
-
-
-
-
-	
         alive = new boolean[GRID_SIZE][GRID_SIZE];
         setLayout(new BorderLayout(3,3));
         setBackground(Color.GRAY);
