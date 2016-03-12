@@ -50,7 +50,7 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
         f.setVisible(true);
     }
 
-    private final int GRID_SIZE = 6;  // Number of squares along each side of the board
+    private final int GRID_SIZE = 4;  // Number of squares along each side of the board
                                         // (Should probably not be less than 10 or more than 200,)
     private final int TEMPO = 240;
 

@@ -41,18 +41,18 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
      * Main program opens a window whose content pane is a JPanel belonging to class Life.
      */
     public static void main(String[] args) {
-        JFrame f = new JFrame("Life");
+        JFrame f = new JFrame("Kanye's Game of Life");
         JPanel p = new Life();
         f.setContentPane(p);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.pack();
         f.setLocation(100,50);
         f.setVisible(true);
-	audioPlayer.play();
     }
 
     private final int GRID_SIZE = 6;  // Number of squares along each side of the board
                                         // (Should probably not be less than 10 or more than 200,)
+    private final int TEMPO = 240;
 
     private boolean[][] alive;   // Represents the board.  alive[r][c] is true if the cell in row r, column c is alive.
 
@@ -65,22 +65,37 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
     private JButton  randomButton;  // Button for filling the board randomly with each cell having a 25% chance of  being alive.
     private JButton  clearButton;   // Button for clearing the board, that is setting all the cells to "dead".
     private JButton  quitButton;    // Button for ending the program.
-    
-    private AudioPlayer[] audioPlayer; // AudioPlayer Object
 
-
+    private AudioPlayer[][] audioPlayer; // AudioPlayer Object
 
     /**
      * Create a life game board, initially empty.  The number of cells on each side of the grid is GRID_SIZE.
      */
+
     public Life() {
+<<<<<<< HEAD
 	audioPlayer = new AudioPlayer[GRID_SIZE][GRID_SIZE];
-	audioPlayer[0][0] = new AudioPlayer("C:\\Users\\mzwan_000\\workspace\\Java2DGame\\res\\01_-_Shima_no_Kodomo_Naru.wav");
-
-
-
-
+	for (int r = 0; r < GRID_SIZE; r++ ) {
+	    for (int c = 0; c < GRID_SIZE; c++) {
+		//audioPlayer[r][c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\" + (r * GRID_SIZE + c) + ".wav");
+		audioPlayer[r][c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
+						    + "piano-ff-0" + (28 + r * GRID_SIZE + c)
+						    + ".wav");
+	    }
+	}
 	
+	
+=======
+	    audioPlayer = new AudioPlayer[GRID_SIZE][GRID_SIZE];
+        int inc = -1;
+        for (int i = 0; i < GRID_SIZE; i++) {
+            for (int j = 0; j < GRID_SIZE; i++) {
+                inc++;
+                audioPlayer[j][i] = new AudioPlayer("samples/" + inc + ".wav");
+            }
+        }
+>>>>>>> origin/master
+
         alive = new boolean[GRID_SIZE][GRID_SIZE];
         setLayout(new BorderLayout(3,3));
         setBackground(Color.GRAY);
@@ -110,7 +125,7 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
         nextButton.addActionListener(this);
         display.addMouseListener(this);
         display.addMouseMotionListener(this);
-        timer = new Timer(50,this);
+        timer = new Timer(1000 * 60 / TEMPO,this);
     }
 
 
@@ -165,15 +180,31 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
         display.setAutopaint(false);  // For efficiency, prevent redrawing of individual squares.
         for (int r = 0; r < GRID_SIZE; r++) {
             for (int c = 0; c < GRID_SIZE; c++) {
-                if (alive[r][c])
+                if (alive[r][c]) {
                     display.setColor(r,c,Color.WHITE);
-                else
+		}
+                else {
                     display.setColor(r,c,null);  // Shows the background color, black.
+		}
             }
         }
         display.setAutopaint(true);  // Redraw the whole board, and turn on drawing of individual squares.
     }
 
+    public void playSound() {
+	for (int r = 0; r < GRID_SIZE; r++) {
+	    for (int c = 0; c < GRID_SIZE; c++) {
+		if (alive[r][c]) {
+		    try {
+			audioPlayer[r][c].play();
+		    }
+		    catch (Exception e){
+			continue;
+		    }
+		}
+	    }
+	}
+    }
 
     /**
      * Respond to an ActionEvent from one of the control buttons or from the timer.
@@ -190,6 +221,7 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
         else if (src == nextButton) {  // Compute and display the next generation.
             doFrame();
             showBoard();
+	    playSound();
         }
         else if (src == stopGoButton) {  // Start or stop the game, depending on whether or not it is currenty running.
             if (timer.isRunning()) {  // If the game is currently running, stop it.
@@ -213,10 +245,12 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
                     alive[r][c] = (Math.random() < 0.25);  // 25% probability that the cell is alive.
             }
             showBoard();
+	    playSound();
         }
         else if (src == timer) {  // Each time the timer fires, a new frame is computed and displayed.
             doFrame();
             showBoard();
+	    playSound();
         }
     }
 
