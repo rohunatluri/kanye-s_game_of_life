@@ -65,18 +65,22 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
     private JButton  randomButton;  // Button for filling the board randomly with each cell having a 25% chance of  being alive.
     private JButton  clearButton;   // Button for clearing the board, that is setting all the cells to "dead".
     private JButton  quitButton;    // Button for ending the program.
-    
+
     private AudioPlayer[][] audioPlayer; // AudioPlayer Object
-
-
 
     /**
      * Create a life game board, initially empty.  The number of cells on each side of the grid is GRID_SIZE.
      */
+
     public Life() {
-	audioPlayer = new AudioPlayer[GRID_SIZE][GRID_SIZE];
-	audioPlayer[2][2] = new AudioPlayer("C:\\Users\\mzwan_000\\workspace\\Java2DGame\\res\\01_-_Shima_no_Kodomo_Naru.wav");
-	
+	    audioPlayer = new AudioPlayer[GRID_SIZE][GRID_SIZE];
+        int inc = -1;
+        for (int i = 0; i < GRID_SIZE; i++) {
+            for (int j = 0; j < GRID_SIZE; i++) {
+                inc++;
+                audioPlayer[j][i] = new AudioPlayer("samples/" + inc + ".wav");
+            }
+        }
 
         alive = new boolean[GRID_SIZE][GRID_SIZE];
         setLayout(new BorderLayout(3,3));
