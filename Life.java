@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Random;
 
 import javax.swing.*;
 
@@ -65,7 +66,7 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
     private JButton  randomButton;  // Button for filling the board randomly with each cell having a 25% chance of  being alive.
     private JButton  clearButton;   // Button for clearing the board, that is setting all the cells to "dead".
     private JButton  quitButton;    // Button for ending the program.
-    
+
     private AudioPlayer[][] audioPlayer; // AudioPlayer Object
 
 
@@ -75,6 +76,7 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
      */
     public Life() {
 	audioPlayer = new AudioPlayer[GRID_SIZE][GRID_SIZE];
+<<<<<<< HEAD
 	for (int r = 0; r < GRID_SIZE / 4; r++) {
 	    for (int c = 0; c < GRID_SIZE / 4; c++) {
 		/*
@@ -110,10 +112,45 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
 						    + ".wav");
 	audioPlayer[2 + 4 * r][2 + 4 * c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
 						    + "piano-ff-0" + (45)
+=======
+	audioPlayer[0][0] = new AudioPlayer("samples\\"
+						    + "piano-ff-0" + (4)
 						    + ".wav");
-	audioPlayer[2 + 4 * r][3 + 4 * c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
+	audioPlayer[0][1] = new AudioPlayer("samples\\"
+						    + "piano-ff-0" + (8)
+						    + ".wav");
+	audioPlayer[0][2] = new AudioPlayer("samples\\"
+						    + "piano-ff-0" + (11)
+						    + ".wav");
+	audioPlayer[0][3] = new AudioPlayer("samples/"
+						    + "piano-ff-0" + (16)
+						    + ".wav");
+	audioPlayer[1][0] = new AudioPlayer("samples/"
+						    + "piano-ff-0" + (20)
+						    + ".wav");
+	audioPlayer[1][1] = new AudioPlayer("samples/"
+						    + "piano-ff-0" + (23)
+						    + ".wav");
+	audioPlayer[1][2] = new AudioPlayer("samples/"
+						    + "piano-ff-0" + (28)
+						    + ".wav");
+	audioPlayer[1][3] = new AudioPlayer("samples/"
+						    + "piano-ff-0" + (32)
+						    + ".wav");
+	audioPlayer[2][0] = new AudioPlayer("samples/"
+						    + "piano-ff-0" + (35)
+						    + ".wav");
+	audioPlayer[2][1] = new AudioPlayer("samples/"
+						    + "piano-ff-0" + (40)
+						    + ".wav");
+	audioPlayer[2][2] = new AudioPlayer("samples/"
+						    + "piano-ff-0" + (44)
+>>>>>>> origin/master
+						    + ".wav");
+	audioPlayer[2][3] = new AudioPlayer("samples/"
 						    + "piano-ff-0" + (47)
 						    + ".wav");
+<<<<<<< HEAD
 	audioPlayer[3 + 4 * r][0 + 4 * c] = new AudioPlayer("C:\\JAVA\\HACKATHONS\\kanye-s_game_of_life\\samples\\"
 						    + "piano-ff-0" + (49)
 						    + ".wav");
@@ -129,6 +166,39 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
 	//						    + ".wav");
 	    }
 	}
+=======
+	audioPlayer[3][0] = new AudioPlayer("samples/"
+						    + "piano-ff-0" + (52)
+						    + ".wav");
+	audioPlayer[3][1] = new AudioPlayer("samples/"
+						    + "piano-ff-0" + (56)
+						    + ".wav");
+	audioPlayer[3][2] = new AudioPlayer("samples/"
+						    + "piano-ff-0" + (59)
+						    + ".wav");
+	audioPlayer[3][3] = new AudioPlayer("samples/"
+						    + "piano-ff-0" + (64)
+						    + ".wav");
+    Random rand = new Random();
+    for (int i = 0; i < GRID_SIZE; i++) {
+        for (int j = 0; j < GRID_SIZE; j++) {
+            if (audioPlayer[i][j] == null) {
+                System.out.printf("%d, %d\n", i, j);
+                audioPlayer[i][j] = audioPlayer[i % 2][j % 2];
+            }
+        }
+    }
+    int set = 0;
+    for (int i = 0; i < GRID_SIZE; i++) {
+        for (int j = 0; j < GRID_SIZE; j++) {
+            set++;
+            if (set % 3 == 1) {
+                audioPlayer[i][j] = null;
+            }
+        }
+    }
+
+>>>>>>> origin/master
 
         alive = new boolean[GRID_SIZE][GRID_SIZE];
         setLayout(new BorderLayout(3,3));
