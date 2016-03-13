@@ -68,7 +68,7 @@ public class Life extends JPanel implements ActionListener, MouseListener, Mouse
     
     private AudioPlayer[][] audioPlayer; // AudioPlayer Object
 
-
+s
 
     /**
      * Create a life game board, initially empty.  The number of cells on each side of the grid is GRID_SIZE.
